@@ -1,7 +1,7 @@
-package io.github.susimsek.services.employee.bootstrap;
+package io.github.susimsek.services.organization.bootstrap;
 
-import io.github.susimsek.services.employee.model.Employee;
-import io.github.susimsek.services.employee.repository.EmployeeRepository;
+import io.github.susimsek.services.organization.model.Employee;
+import io.github.susimsek.services.organization.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

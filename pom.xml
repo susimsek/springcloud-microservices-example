@@ -24,6 +24,8 @@
 		<jib-maven-plugin.image>eclipse-temurin:11-jre-focal</jib-maven-plugin.image>
 		<jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
 		<spring-native.version>0.10.4</spring-native.version>
+		<jaxb2-maven-plugin.version>2.5.0</jaxb2-maven-plugin.version>
+		<jaxb-lombok-plugin.version>0.0.1</jaxb-lombok-plugin.version>
 	</properties>
 
 	<modules>
@@ -32,6 +34,7 @@
 		<module>gateway-service</module>
 		<module>department-service</module>
 		<module>employee-service</module>
+		<module>organization-service</module>
 	</modules>
 
 	<dependencyManagement>
@@ -103,6 +106,43 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jaxb2-maven-plugin</artifactId>
+					<version>${jaxb2-maven-plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.github.wwerner</groupId>
+							<artifactId>jaxb-lombok-plugin</artifactId>
+							<version>${jaxb-lombok-plugin.version}</version>
+						</dependency>
+					</dependencies>
+					<executions>
+						<execution>
+							<id>xjc</id>
+							<goals>
+								<goal>xjc</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<sources>
+							<source>${project.basedir}/src/main/resources/xsd</source>
+						</sources>
+						<clearOutputDir>false</clearOutputDir>
+						<arguments>
+							<argument>-Xlombok</argument>
+							<argument>-Xlombok:Setter</argument>
+							<argument>-Xlombok:removeGeneratedSourceSetters</argument>
+							<argument>-Xlombok:ToString</argument>
+							<argument>-Xlombok:Builder</argument>
+						</arguments>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<profiles>
@@ -301,6 +341,11 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>jitpack.io</id>
+			<name>jitpack</name>
+			<url>https://jitpack.io</url>
 		</pluginRepository>
 	</pluginRepositories>
 </project>

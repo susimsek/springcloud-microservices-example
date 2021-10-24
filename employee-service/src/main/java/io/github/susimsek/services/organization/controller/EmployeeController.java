@@ -1,8 +1,8 @@
-package io.github.susimsek.services.employee.controller;
+package io.github.susimsek.services.organization.controller;
 
-import io.github.susimsek.services.employee.exception.RecordNotFoundException;
-import io.github.susimsek.services.employee.model.Employee;
-import io.github.susimsek.services.employee.repository.EmployeeRepository;
+import io.github.susimsek.services.organization.exception.RecordNotFoundException;
+import io.github.susimsek.services.organization.model.Employee;
+import io.github.susimsek.services.organization.repository.EmployeeRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

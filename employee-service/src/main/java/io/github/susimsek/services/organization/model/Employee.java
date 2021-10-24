@@ -1,4 +1,4 @@
-package io.github.susimsek.services.employee.model;
+package io.github.susimsek.services.organization.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
