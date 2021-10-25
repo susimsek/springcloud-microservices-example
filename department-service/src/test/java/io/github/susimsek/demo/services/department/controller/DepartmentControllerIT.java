@@ -85,7 +85,7 @@ public class DepartmentControllerIT {
         List<Employee> employees = getSampleAllEmployees();
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/with-employees")
+                        .get("/organization/{organizationId}/with-employees",1L)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())

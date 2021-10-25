@@ -83,6 +83,20 @@ public class DepartmentController {
 				.body(department);
 	}
 
+	@Operation(summary = "Find All Department by Organization ID", tags = { "employee" })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "successful operation",
+					content = {
+							@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Department.class)))
+					}
+			)
+	})
+	@GetMapping("/organization/{organizationId}")
+	public List<Department> findByOrganization(@PathVariable("organizationId") Long organizationId) {
+		log.info("Department find: organizationId={}", organizationId);
+		return departmentService.getAllDepartmentsByOrganizationId(organizationId);
+	}
+
 	@Operation(summary = "Find All Department with Employees", tags = { "employee" })
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
@@ -91,10 +105,10 @@ public class DepartmentController {
 					}
 			)
 	})
-	@GetMapping(value = "/with-employees", produces = { "application/json"})
-	public ResponseEntity<List<Department>> findAllWithEmployees() {
+	@GetMapping(value = "/organization/{organizationId}/with-employees", produces = { "application/json"})
+	public ResponseEntity<List<Department>> findAllWithEmployees(@PathVariable("organizationId") Long organizationId) {
 		log.info("Department findAllWithEmployees");
-		List<Department> departments = departmentService.getAllDepartmentsWithEmployees();
+		List<Department> departments = departmentService.getAllDepartmentsWithEmployees(organizationId);
 		return ResponseEntity.ok(departments);
 	}
 	

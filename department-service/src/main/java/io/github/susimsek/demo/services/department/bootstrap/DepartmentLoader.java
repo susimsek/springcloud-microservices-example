@@ -15,12 +15,12 @@ public class DepartmentLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
         departmentRepository.save(
-                Department.builder().name("Development").build());
+                Department.builder().organizationId(1L).name("Development").build());
         departmentRepository.save(
-                Department.builder().name("Operations").build());
+                Department.builder().organizationId(1L).name("Operations").build());
         departmentRepository.save(
-                Department.builder().name("Development").build());
+                Department.builder().organizationId(2L).name("Development").build());
         departmentRepository.save(
-                Department.builder().name("Operations").build());
+                Department.builder().organizationId(2L).name("Operations").build());
     }
 }

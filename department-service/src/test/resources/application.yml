@@ -16,3 +16,8 @@ eureka:
 employee:
   service:
     url: http://localhost:${wiremock.server.port}
+
+organization:
+  service:
+    url: http://localhost:${wiremock.server.port}
+

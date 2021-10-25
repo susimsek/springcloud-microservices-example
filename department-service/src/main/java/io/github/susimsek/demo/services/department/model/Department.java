@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class Department {
 	@Schema(description = "Unique identifier of the Department.", example = "500", required = true)
 	private Long id;
 
+	@Schema(description = "Unique identifier of the Organization.", example = "1", required = true)
+	@NotNull
+	private Long organizationId;
+
+
 	@Schema(description = "Name of the Department.", example = "Devops", required = true)
 	@NotBlank
 	private String name;
@@ -31,6 +37,10 @@ public class Department {
 	@Transient
 	@Schema(description = "Employees of the Department.", required = true)
 	private List<Employee> employees = new ArrayList<>();
+
+	@Schema(description = "Organization Information.", required = true)
+	@Transient
+	private Organization organization;
 
 	@Override
 	public boolean equals(Object o) {

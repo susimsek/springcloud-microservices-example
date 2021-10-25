@@ -71,19 +71,18 @@ class DepartmentServiceImplTest {
     void shouldReturnAllDepartmentsWithEmployees() {
         List<Department> departments = getSampleAllDepartments();
         List<Employee> employees = getSampleAllEmployees();
-        Mockito.when(departmentRepository.findAll()).thenReturn(departments);
+        Mockito.when(departmentRepository.findByOrganizationId(DEFAULT_ORGANIZATION_ID)).thenReturn(departments);
         Mockito.when(employeeClient.findByDepartment(anyLong())).thenReturn(getSampleAllEmployees());
 
-        List<Department> expected = departmentService.getAllDepartmentsWithEmployees();
+        List<Department> expected = departmentService.getAllDepartmentsWithEmployees(DEFAULT_ORGANIZATION_ID);
 
         assertNotNull(expected);
         assertEquals(expected.size(), departments.size());
         assertEquals(expected.get(0).getEmployees().size(), employees.size());
         assertEquals(expected.get(0).getEmployees(), employees);
 
-        verify(departmentRepository, times(1)).findAll();
+        verify(departmentRepository, times(1)).findByOrganizationId(DEFAULT_ORGANIZATION_ID);
         verify(employeeClient, times(departments.size())).findByDepartment(anyLong());
-
     }
 
     @Test

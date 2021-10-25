@@ -26,6 +26,7 @@
 		<spring-native.version>0.10.4</spring-native.version>
 		<jaxb2-maven-plugin.version>2.5.0</jaxb2-maven-plugin.version>
 		<jaxb-lombok-plugin.version>0.0.1</jaxb-lombok-plugin.version>
+		<maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
 	</properties>
 
 	<modules>
@@ -140,6 +141,18 @@
 							<argument>-Xlombok:Builder</argument>
 						</arguments>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jvnet.jaxb2.maven2</groupId>
+					<artifactId>maven-jaxb2-plugin</artifactId>
+					<version>${maven-jaxb2-plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>generate</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>

@@ -8,6 +8,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static io.github.susimsek.demo.services.department.util.EmployeeUtil.*;
 import static io.github.susimsek.demo.services.department.util.JsonUtil.*;
 
+
 public class EmployeeClientStub {
 
     public static void stubFindEmployeesByDepartmentId() throws JsonProcessingException {
@@ -15,7 +16,8 @@ public class EmployeeClientStub {
         stubFor(get(urlPathMatching("/department/.*"))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
-                        .withBody(toJson(stubEmployees))));
+                        .withBody(toJson(stubEmployees))
+                ));
     }
 
 }

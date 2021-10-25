@@ -93,10 +93,10 @@ class DepartmentControllerTest {
     public void getAllDepartmentsWithEmployees_whenGetMethod() throws Exception {
         List<Department> departments = getSampleAllDepartmentsWithEmployees();
 
-        Mockito.when(departmentService.getAllDepartmentsWithEmployees()).thenReturn(departments);
+        Mockito.when(departmentService.getAllDepartmentsWithEmployees(DEFAULT_ORGANIZATION_ID)).thenReturn(departments);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/with-employees")
+                        .get("/organization/{organizationId}/with-employees",DEFAULT_ORGANIZATION_ID)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
@@ -105,7 +105,7 @@ class DepartmentControllerTest {
                 .andExpect(jsonPath("$[0].employees", hasSize(departments.get(0).getEmployees().size())))
                 .andExpect(jsonPath("$[0].employees[0].name").value(departments.get(0).getEmployees().get(0).getName()));
 
-        verify(departmentService, times(1)).getAllDepartmentsWithEmployees();
+        verify(departmentService, times(1)).getAllDepartmentsWithEmployees(1L);
     }
 
     @Test

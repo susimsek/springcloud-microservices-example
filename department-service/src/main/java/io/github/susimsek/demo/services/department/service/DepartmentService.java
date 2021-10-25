@@ -12,5 +12,7 @@ public interface DepartmentService {
 
     Department getDepartmentById(Long id);
 
-    List<Department> getAllDepartmentsWithEmployees();
+    List<Department> getAllDepartmentsWithEmployees(Long organizationId);
+
+    List<Department> getAllDepartmentsByOrganizationId(Long organizationId);
 }

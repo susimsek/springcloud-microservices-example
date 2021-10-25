@@ -26,6 +26,8 @@ api-docs:
   license: Apache 2.0
 
 spring:
+  jackson:
+    default-property-inclusion: non_null
   datasource:
     url: jdbc:h2:mem:employee
     username: sa
