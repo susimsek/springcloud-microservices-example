@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 @AutoConfigureWireMock(port = 0)
 public class EmployeeClientIT {
 
-
     @Autowired
     EmployeeClient employeeClient;
 

@@ -1,6 +1,5 @@
 package io.github.susimsek.demo.services.department.client;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.susimsek.demo.services.department.config.OrganizationClientConfig;
 import io.github.susimsek.demo.services.department.model.Organization;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 
+
+import java.io.IOException;
 
 import static io.github.susimsek.demo.services.department.client.OrganizationClientStub.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -22,7 +23,7 @@ public class OrganizationClientIT {
     OrganizationClient organizationClient;
 
     @BeforeEach
-    void setUp() throws JsonProcessingException {
+    void setUp() throws IOException {
         stubFindOrganizationById();
     }
 
