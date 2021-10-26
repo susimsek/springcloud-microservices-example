@@ -1,0 +1,13 @@
+{
+  "request": {
+    "urlPattern": "/department/([0-9]*)",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "body": "[\n  {\n    \"id\": 1,\n    \"departmentId\": 1,\n    \"name\": \"John Smith\",\n    \"age\": 34,\n    \"position\": \"Analyst\"\n  },\n  {\n    \"id\": 2,\n    \"departmentId\": 1,\n    \"name\": \"Darren Hamilton\",\n    \"age\": 37,\n    \"position\": \"Manager\"\n  }\n]",
+    "headers" : {
+      "Content-Type" : "application/json; charset=UTF-8"
+    }
+  }
+}

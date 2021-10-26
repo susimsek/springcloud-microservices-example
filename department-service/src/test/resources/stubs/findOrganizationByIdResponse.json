@@ -1,0 +1,18 @@
+{
+  "request": {
+    "urlPath": "/ws",
+    "method": "POST",
+    "headers" : {
+      "Content-Type" : {
+        "matches" : "text/xml; charset=UTF-8"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Header/>\n    <SOAP-ENV:Body>\n        <ns2:getOrganizationByIdResponse xmlns:ns2=\"http://susimsek.github.io/organizations\">\n            <ns2:organization>\n                <ns2:id>1</ns2:id>\n                <ns2:name>Microsoft</ns2:name>\n                <ns2:address>Redmond, Washington, USA</ns2:address>\n            </ns2:organization>\n        </ns2:getOrganizationByIdResponse>\n    </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+    "headers" : {
+      "Content-Type" : "text/xml; charset=UTF-8"
+    }
+  }
+}
