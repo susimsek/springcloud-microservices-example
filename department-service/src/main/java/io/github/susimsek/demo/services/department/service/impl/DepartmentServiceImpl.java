@@ -1,6 +1,6 @@
 package io.github.susimsek.demo.services.department.service.impl;
 
-import io.github.susimsek.demo.services.department.client.EmployeeClient;
+import io.github.susimsek.demo.services.department.client.feign.EmployeeClient;
 import io.github.susimsek.demo.services.department.client.OrganizationClient;
 import io.github.susimsek.demo.services.department.exception.RecordNotFoundException;
 import io.github.susimsek.demo.services.department.model.Department;

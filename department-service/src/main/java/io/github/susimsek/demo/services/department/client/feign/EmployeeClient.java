@@ -1,4 +1,4 @@
-package io.github.susimsek.demo.services.department.client;
+package io.github.susimsek.demo.services.department.client.feign;
 
 import io.github.susimsek.demo.services.department.model.Employee;
 import org.springframework.cloud.openfeign.FeignClient;

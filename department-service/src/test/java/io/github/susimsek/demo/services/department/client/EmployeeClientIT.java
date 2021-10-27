@@ -1,6 +1,7 @@
 package io.github.susimsek.demo.services.department.client;
 
-import io.github.susimsek.demo.services.department.DepartmentApplication;
+import io.github.susimsek.demo.services.department.client.feign.EmployeeClient;
+import io.github.susimsek.demo.services.department.config.FeignConfig;
 import io.github.susimsek.demo.services.department.model.Employee;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-@SpringBootTest(classes = DepartmentApplication.class)
+@SpringBootTest(classes = FeignConfig.class)
 @AutoConfigureWireMock(port = 0, stubs = "classpath:/stubs")
 public class EmployeeClientIT {
 
     @Autowired
     EmployeeClient employeeClient;
-
 
     @Test
     public void getAllEmployeesByDepartmentId_whenGetMethod() {
