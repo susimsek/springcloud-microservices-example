@@ -1,4 +1,4 @@
-package io.github.susimsek.services.organization.config;
+package io.github.susimsek.demo.services.employee.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

@@ -1,8 +1,7 @@
-package io.github.susimsek.services.organization.controller;
+package io.github.susimsek.demo.services.employee.controller;
 
-import io.github.susimsek.services.organization.exception.RecordNotFoundException;
-import io.github.susimsek.services.organization.model.Employee;
-import io.github.susimsek.services.organization.repository.EmployeeRepository;
+import io.github.susimsek.demo.services.employee.model.Employee;
+import io.github.susimsek.demo.services.employee.service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -26,7 +25,7 @@ import java.util.List;
 @RestController
 public class EmployeeController {
 
-	private final EmployeeRepository repository;
+	private final EmployeeService employeeService;
 
 	@Operation(summary = "Create Employee", tags = { "employee" })
 	@ApiResponses(value = {
@@ -44,7 +43,7 @@ public class EmployeeController {
 											@Valid @RequestBody Employee employee) {
 		log.info("Employee add: {}", employee);
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(repository.save(employee));
+				.body(employeeService.createEmployee(employee));
 	}
 
 	@Operation(summary = "Find All Employees", tags = { "employee" })
@@ -59,7 +58,7 @@ public class EmployeeController {
 	public ResponseEntity<List<Employee>> findAll() {
 		log.info("Employee find");
 		return ResponseEntity.ok()
-				.body(repository.findAll());
+				.body(employeeService.getAllEmployees());
 	}
 
 	@Operation(summary = "Find Employee by ID", tags = { "employee" })
@@ -73,9 +72,9 @@ public class EmployeeController {
 			@ApiResponse(responseCode = "404", description = "Employee not found", content = @Content)
 	})
 	@GetMapping(value = "/{id}", produces = { "application/json"})
-	public ResponseEntity<Employee> findById(@Parameter(description="Id of the employee to be obtained. Cannot be empty.", required=true) Long id) {
+	public ResponseEntity<Employee> findById(@Parameter(description="Id of the employee to be obtained. Cannot be empty.", required=true) @PathVariable("id") Long id) {
 		log.info("Employee find: id={}", id);
-		Employee employee = repository.findById(id).orElseThrow(() -> new RecordNotFoundException(String.format("Employee %s not found", id)));
+		Employee employee = employeeService.getEmployeeById(id);
 		return ResponseEntity.ok()
 				.body(employee);
 	}
@@ -92,6 +91,6 @@ public class EmployeeController {
 	@GetMapping(value = "/department/{departmentId}", produces = { "application/json"})
 	public ResponseEntity<List<Employee>> findByDepartment(@Parameter(description="Id of the department to be obtained. Cannot be empty.", required=true) @PathVariable("departmentId") Long departmentId) {
 		log.info("Employee find: departmentId={}", departmentId);
-		return ResponseEntity.ok(repository.findByDepartmentId(departmentId));
+		return ResponseEntity.ok(employeeService.getAllEmployeesByDepartmentId(departmentId));
 	}
 }

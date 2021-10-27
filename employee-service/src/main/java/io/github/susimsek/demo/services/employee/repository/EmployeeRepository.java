@@ -1,6 +1,6 @@
-package io.github.susimsek.services.organization.repository;
+package io.github.susimsek.demo.services.employee.repository;
 
-import io.github.susimsek.services.organization.model.Employee;
+import io.github.susimsek.demo.services.employee.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

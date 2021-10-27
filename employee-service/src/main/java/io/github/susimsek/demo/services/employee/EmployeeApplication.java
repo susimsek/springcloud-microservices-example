@@ -1,4 +1,4 @@
-package io.github.susimsek.services.organization;
+package io.github.susimsek.demo.services.employee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

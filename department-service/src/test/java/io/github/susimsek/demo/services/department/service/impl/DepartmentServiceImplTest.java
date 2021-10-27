@@ -26,7 +26,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-class DepartmentServiceImplTest {
+public class DepartmentServiceImplTest {
 
     @Mock
     DepartmentRepository departmentRepository;
@@ -38,7 +38,7 @@ class DepartmentServiceImplTest {
     DepartmentServiceImpl departmentService;
 
     @Test
-    void whenSaveDepartment_shouldReturnDepartment() {
+    public void whenSaveDepartment_shouldReturnDepartment() {
         Department departmentForSave = getSampleDepartmentForSave();
         Department department = getSampleDepartment();
 
@@ -53,7 +53,7 @@ class DepartmentServiceImplTest {
     }
 
     @Test
-    void shouldReturnAllDepartments() {
+    public void shouldReturnAllDepartments() {
         List<Department> departments = getSampleAllDepartments();
         Mockito.when(departmentRepository.findAll()).thenReturn(departments);
 
@@ -68,7 +68,7 @@ class DepartmentServiceImplTest {
     }
 
     @Test
-    void shouldReturnAllDepartmentsWithEmployees() {
+    public void shouldReturnAllDepartmentsWithEmployees() {
         List<Department> departments = getSampleAllDepartments();
         List<Employee> employees = getSampleAllEmployees();
         Mockito.when(departmentRepository.findByOrganizationId(DEFAULT_ORGANIZATION_ID)).thenReturn(departments);
@@ -86,7 +86,7 @@ class DepartmentServiceImplTest {
     }
 
     @Test
-    void whenGivenId_shouldReturnDepartment_ifDepartmentExists() {
+    public void whenGivenId_shouldReturnDepartment_ifDepartmentExists() {
         Department department = getSampleDepartment();
         Mockito.when(departmentRepository.findById(department.getId())).thenReturn(Optional.of(department));
 

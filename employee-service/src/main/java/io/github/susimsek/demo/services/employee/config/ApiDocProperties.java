@@ -1,4 +1,4 @@
-package io.github.susimsek.services.organization.config;
+package io.github.susimsek.demo.services.employee.config;
 
 import lombok.Getter;
 import lombok.Setter;

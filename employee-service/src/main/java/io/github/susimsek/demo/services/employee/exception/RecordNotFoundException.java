@@ -1,4 +1,4 @@
-package io.github.susimsek.services.organization.exception;
+package io.github.susimsek.demo.services.employee.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

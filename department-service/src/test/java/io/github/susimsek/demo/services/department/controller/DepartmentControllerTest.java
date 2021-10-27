@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(DepartmentController.class)
-class DepartmentControllerTest {
+public class DepartmentControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -37,7 +37,7 @@ class DepartmentControllerTest {
     DepartmentService departmentService;
 
     @Test
-    void createDepartment_whenPostMethod() throws Exception {
+    public void createDepartment_whenPostMethod() throws Exception {
 
         Department departmentForSave = getSampleDepartmentForSave();
         Department department = getSampleDepartment();

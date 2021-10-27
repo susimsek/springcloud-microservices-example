@@ -76,7 +76,7 @@ public class DepartmentController {
 			@ApiResponse(responseCode = "404", description = "Department not found", content = @Content)
 	})
 	@GetMapping(value = "/{id}", produces = { "application/json"})
-	public ResponseEntity<Department> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Department> findById(@Parameter(description="Id of the department to be obtained. Cannot be empty.", required=true) @PathVariable("id") Long id) {
 		log.info("Department find: id={}", id);
 		Department department = departmentService.getDepartmentById(id);
 		return ResponseEntity.ok()
@@ -92,7 +92,7 @@ public class DepartmentController {
 			)
 	})
 	@GetMapping("/organization/{organizationId}")
-	public List<Department> findByOrganization(@PathVariable("organizationId") Long organizationId) {
+	public List<Department> findByOrganization(@Parameter(description="Id of the organization to be obtained. Cannot be empty.", required=true) @PathVariable("organizationId") Long organizationId) {
 		log.info("Department find: organizationId={}", organizationId);
 		return departmentService.getAllDepartmentsByOrganizationId(organizationId);
 	}
@@ -106,7 +106,7 @@ public class DepartmentController {
 			)
 	})
 	@GetMapping(value = "/organization/{organizationId}/with-employees", produces = { "application/json"})
-	public ResponseEntity<List<Department>> findAllWithEmployees(@PathVariable("organizationId") Long organizationId) {
+	public ResponseEntity<List<Department>> findAllWithEmployees(@Parameter(description="Id of the organization to be obtained. Cannot be empty.", required=true) @PathVariable("organizationId") Long organizationId) {
 		log.info("Department findAllWithEmployees");
 		List<Department> departments = departmentService.getAllDepartmentsWithEmployees(organizationId);
 		return ResponseEntity.ok(departments);
