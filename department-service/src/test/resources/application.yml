@@ -20,4 +20,3 @@ employee:
 organization:
   service:
     url: http://localhost:${wiremock.server.port}
-
