@@ -60,4 +60,18 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>native-image</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.hibernate.orm.tooling</groupId>
+						<artifactId>hibernate-enhance-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 </project>

@@ -30,6 +30,12 @@ spring:
         - Path=/department/**
         filters:
         - RewritePath=/department/(?<path>.*), /$\{path}
+      - id: organization-endpoint
+        uri: lb://organization-endpoint
+        predicates:
+          - Path=/organization/**
+        filters:
+          - RewritePath=/organization/(?<path>.*), /$\{path}
       - id: openapi
         uri: http://localhost:${server.port}
         predicates:

@@ -11,19 +11,19 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<spring-boot.version>2.5.5</spring-boot.version>
+		<spring-boot.version>2.5.6</spring-boot.version>
 		<spring-cloud.version>2020.0.4</spring-cloud.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<spring-boot-maven-plugin.version>${spring-boot.version}</spring-boot-maven-plugin.version>
-		<springdoc.version>1.5.11</springdoc.version>
+		<springdoc.version>1.5.12</springdoc.version>
 		<springdoc-openapi-maven-plugin.version>1.3</springdoc-openapi-maven-plugin.version>
 		<jib-maven-plugin.version>3.1.2</jib-maven-plugin.version>
 		<jib-maven-plugin.image>eclipse-temurin:11-jre-focal</jib-maven-plugin.image>
 		<jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
-		<spring-native.version>0.10.4</spring-native.version>
+		<spring-native.version>0.10.5</spring-native.version>
 		<jaxb2-maven-plugin.version>2.5.0</jaxb2-maven-plugin.version>
 		<jaxb-lombok-plugin.version>0.0.1</jaxb-lombok-plugin.version>
 		<maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
@@ -31,6 +31,7 @@
 		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
 		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+		<hibernate.version>5.4.32.Final</hibernate.version>
 	</properties>
 
 	<modules>
@@ -342,6 +343,30 @@
 				</dependency>
 			</dependencies>
 			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.hibernate.orm.tooling</groupId>
+							<artifactId>hibernate-enhance-maven-plugin</artifactId>
+							<version>${hibernate.version}</version>
+							<executions>
+								<execution>
+									<id>enhance</id>
+									<goals>
+										<goal>enhance</goal>
+									</goals>
+									<configuration>
+										<failOnError>true</failOnError>
+										<enableLazyInitialization>true</enableLazyInitialization>
+										<enableDirtyTracking>true</enableDirtyTracking>
+										<enableAssociationManagement>true</enableAssociationManagement>
+										<enableExtendedEnhancement>false</enableExtendedEnhancement>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
 				<plugins>
 					<plugin>
 						<groupId>org.springframework.boot</groupId>
@@ -383,6 +408,46 @@
 								<id>generate</id>
 								<goals>
 									<goal>generate</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>native</id>
+			<properties>
+				<native-buildtools.version>0.9.4</native-buildtools.version>
+				<repackage.classifier>exec</repackage.classifier>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.graalvm.buildtools</groupId>
+					<artifactId>junit-platform-native</artifactId>
+					<version>${native-buildtools.version}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.graalvm.buildtools</groupId>
+						<artifactId>native-maven-plugin</artifactId>
+						<version>${native-buildtools.version}</version>
+						<executions>
+							<execution>
+								<id>test-native</id>
+								<phase>test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>build-native</id>
+								<phase>package</phase>
+								<goals>
+									<goal>build</goal>
 								</goals>
 							</execution>
 						</executions>
